@@ -1,10 +1,18 @@
 [project]
-name = "wize-mcp"
+name = "workwize-mcp"
 version = "0.1.0"
-description = "Add your description here"
-readme = "README.md"
-requires-python = ">=3.11"
+description = "MCP Server for Workwize Public API"
+authors = []
 dependencies = [
-    "httpx>=0.28.1",
-    "mcp[cli]>=1.6.0",
+    "mcp>=0.1.0",
+    "httpx>=0.24.0",
+    "pydantic>=2.0.0",
+    "python-dotenv>=1.0.0",
 ]
+
+[build-system]
+requires = ["hatchling"]
+build-backend = "hatchling.build"
+
+[project.scripts]
+workwize-mcp = "workwize_mcp.server:main"
