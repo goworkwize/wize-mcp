@@ -4,20 +4,30 @@ from mcp.server.fastmcp import FastMCP
 
 from tools.self import GetSelfTool
 
+from tools.assets import GetAssetsTool
+from tools.assets.get_assets import GetAssetsInput
+
 from tools.categories import GetCategoriesTool
 
 from tools.offices import GetOfficesTool
 from tools.offices.get_offices import GetOfficesInput
 
-from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool
+from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool
 from tools.employees.get_employees import GetEmployeesInput
 from tools.employees.create_employee import CreateEmployeeInput
 from tools.employees.get_employee_user import GetEmployeeUserInput
+from tools.employees.get_employee_addresses import GetEmployeeAddressesInput
+
+from tools.offboards import GetOffboardsTool
+from tools.offboards.get_offboards import GetOffboardsInput
 
 from tools.orders import GetOrdersTool, GetOrderProductsTool, GetOrderShipmentsTool
 from tools.orders.get_orders import GetOrdersInput
 from tools.orders.get_order_products import GetOrderProductsInput
 from tools.orders.get_order_shipments import GetOrderShipmentsInput
+
+from tools.products import GetProductsTool
+from tools.products.get_products import GetProductsInput
 
 from tools.warehouses import GetWarehousesTool
 
@@ -107,6 +117,38 @@ async def get_offices(input_data: GetOfficesInput):
 )
 async def get_warehouses():
     result = await GetWarehousesTool().execute()
+    return result.to_response()
+
+@mcp.tool(
+    name=GetProductsTool.name(),
+    description=GetProductsTool.description()
+)
+async def get_products(input_data: GetProductsInput):
+    result = await GetProductsTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=GetOffboardsTool.name(),
+    description=GetOffboardsTool.description()
+)
+async def get_offboards(input_data: GetOffboardsInput):
+    result = await GetOffboardsTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=GetAssetsTool.name(),
+    description=GetAssetsTool.description()
+)
+async def get_assets(input_data: GetAssetsInput):
+    result = await GetAssetsTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=GetEmployeeAddressesTool.name(),
+    description=GetEmployeeAddressesTool.description()
+)
+async def get_employee_addresses(input_data: GetEmployeeAddressesInput):
+    result = await GetEmployeeAddressesTool().execute(input_data)
     return result.to_response()
 
 if __name__ == "__main__":

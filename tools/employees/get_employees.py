@@ -1,7 +1,6 @@
 """Get employees tool."""
 
-from typing import List, Optional
-from datetime import date
+from typing import List, Optional, Literal
 
 from pydantic import BaseModel
 
@@ -15,12 +14,7 @@ class GetEmployeesInput(BaseModel):
     page: Optional[int] = 1
     per_page: Optional[int] = 20
     email: Optional[str] = None
-    department: Optional[str] = None
-    office_id: Optional[int] = None
-    manager_id: Optional[int] = None
-    start_date_from: Optional[date] = None
-    start_date_to: Optional[date] = None
-    include: Optional[List[str]] = None
+    include: Optional[List[Literal['user', 'assets', 'department', 'orders']]] = None
 
 
 class GetEmployeesTool(BaseTool):
@@ -45,16 +39,6 @@ class GetEmployeesTool(BaseTool):
 
         if input_data.email:
             params["email"] = input_data.email
-        if input_data.department:
-            params["department"] = input_data.department
-        if input_data.office_id:
-            params["office_id"] = input_data.office_id
-        if input_data.manager_id:
-            params["manager_id"] = input_data.manager_id
-        if input_data.start_date_from:
-            params["start_date_from"] = input_data.start_date_from.isoformat()
-        if input_data.start_date_to:
-            params["start_date_to"] = input_data.start_date_to.isoformat()
         if input_data.include:
             params["include"] = ",".join(input_data.include)
 
