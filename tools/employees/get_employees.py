@@ -54,7 +54,6 @@ You can filter by:
         if input_data.include:
             params["include"] = ",".join(input_data.include)
 
-        print(params)
         response = self.client.get("/employees", params=params)
         return ToolResult(
             data=response,

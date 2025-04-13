@@ -11,7 +11,6 @@ class GetOfficesInput(BaseModel):
     """Input for GetOfficesTool."""
 
     page: Optional[int] = 1
-    limit: Optional[int] = 20
     name: Optional[str] = None
 
 class GetOfficesTool(BaseTool):
@@ -35,11 +34,10 @@ You can filter by:
     async def execute(self, input_data: GetOfficesInput) -> ToolResult:
         """Execute the tool."""
         params = {
-            "per_page": input_data.per_page,
             "page": input_data.page,
         }
         for key, value in input_data.model_dump().items():
-            if key in ['per_page', 'page']:
+            if key in ['page']:
                 continue
             params[f"filter[{key}]"] = value
 

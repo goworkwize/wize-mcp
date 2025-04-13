@@ -9,10 +9,7 @@ from tools.assets.get_assets import GetAssetsInput
 
 from tools.categories import GetCategoriesTool
 
-from tools.offices import GetOfficesTool
-from tools.offices.get_offices import GetOfficesInput
-
-from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool, UpdateEmployeeTool, UpdateEmployeeAddressTool, CreateEmployeeAddressTool, CreateEmployeeAssetTool
+from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool, UpdateEmployeeTool, UpdateEmployeeAddressTool, CreateEmployeeAddressTool, CreateEmployeeAssetTool, CreateOrderForEmployeeTool
 from tools.employees.get_employees import GetEmployeesInput
 from tools.employees.create_employee import CreateEmployeeInput
 from tools.employees.get_employee_user import GetEmployeeUserInput
@@ -21,6 +18,7 @@ from tools.employees.update_employee import UpdateEmployeeInput
 from tools.employees.update_employee_address import UpdateEmployeeAddressInput
 from tools.employees.create_employee_address import CreateEmployeeAddressInput
 from tools.employees.create_employee_asset import CreateEmployeeAssetInput
+from tools.employees.create_order_for_employee import CreateOrderForEmployeeInput
 
 from tools.invites import CreateInviteTool
 from tools.invites.create_invite import CreateInviteInput
@@ -28,6 +26,10 @@ from tools.invites.create_invite import CreateInviteInput
 from tools.offboards import GetOffboardsTool, CreateOffboardTool
 from tools.offboards.get_offboards import GetOffboardsInput
 from tools.offboards.create_offboard import CreateOffboardInput
+
+from tools.offices import GetOfficesTool, CreateOrderForOfficeTool
+from tools.offices.get_offices import GetOfficesInput
+from tools.offices.create_order_for_office import CreateOrderForOfficeInput
 
 from tools.orders import GetOrdersTool, GetOrderProductsTool, GetOrderShipmentsTool
 from tools.orders.get_orders import GetOrdersInput
@@ -40,7 +42,8 @@ from tools.products.get_products import GetProductsInput
 from tools.users import CreateUserTool
 from tools.users.create_user import CreateUserInput
 
-from tools.warehouses import GetWarehousesTool
+from tools.warehouses import GetWarehousesTool, CreateOrderForWarehouseTool
+from tools.warehouses.create_order_for_warehouse import CreateOrderForWarehouseInput
 
 import dotenv
 import asyncio
@@ -218,5 +221,120 @@ async def create_user(input_data: CreateUserInput):
     result = await CreateUserTool().execute(input_data)
     return result.to_response()
 
+@mcp.tool(
+    name=CreateOrderForEmployeeTool.name(),
+    description=CreateOrderForEmployeeTool.description()
+)
+async def create_order_for_employee(input_data: CreateOrderForEmployeeInput):
+    result = await CreateOrderForEmployeeTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=CreateOrderForOfficeTool.name(),
+    description=CreateOrderForOfficeTool.description()
+)
+async def create_order_for_office(input_data: CreateOrderForOfficeInput):
+    result = await CreateOrderForOfficeTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=CreateOrderForWarehouseTool.name(),
+    description=CreateOrderForWarehouseTool.description()
+)
+async def create_order_for_warehouse(input_data: CreateOrderForWarehouseInput):
+    result = await CreateOrderForWarehouseTool().execute(input_data)
+    return result.to_response()
+
 if __name__ == "__main__":
+    # response_self = asyncio.run(get_self())
+    # if 'id' in response_self:
+    #     print('✅ Self fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch self')
+
+    # response1 = asyncio.run(get_employees(GetEmployeesInput()))
+    # if len(response1) > 0:
+    #     print('✅ Employees fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch employees')
+
+    # response2 = asyncio.run(get_offices(GetOfficesInput()))
+    # if len(response2) > 0:
+    #     print('✅ Offices fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch offices')
+
+    # response3 = asyncio.run(get_warehouses())
+    # if len(response3) > 0:
+    #     print('✅ Warehouses fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch warehouses')
+
+    # response4 = asyncio.run(get_orders(GetOrdersInput()))
+    # if len(response4) > 0:
+    #     print('✅ Orders fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch orders')
+
+    # response5 = asyncio.run(get_order_products(GetOrderProductsInput(order_number=response4['data'][0]['number'])))
+    # if len(response5) > 0:
+    #     print('✅ Order products fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch order products')
+
+    # response6 = asyncio.run(get_order_shipments(GetOrderShipmentsInput(order_number=response4['data'][0]['number'])))
+    # if len(response6) > 0:
+    #     print('✅ Order shipments fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch order shipments')
+
+    # response7 = asyncio.run(get_products(GetProductsInput()))
+    # if len(response7) > 0:
+    #     print('✅ Products fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch products')
+
+    # response7 = asyncio.run(get_products(GetProductsInput(search='macbook')))
+    # if len(response7) > 0:
+    #     print('✅ Products fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch products')
+
+    # response8 = asyncio.run(get_offboards(GetOffboardsInput()))
+    # if len(response8['data']) > 0:
+    #     print('✅ Offboards fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch offboards')
+
+    # response9 = asyncio.run(get_employee_user(GetEmployeeUserInput(employee_id=response1[0]['id'])))
+    # if 'id' in response9:
+    #     print('✅ Employee user fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch employee user')
+
+    # response10 = asyncio.run(get_employee_addresses(GetEmployeeAddressesInput(employee_id=response1[0]['id'])))
+    # if 'id' in response10['data']:
+    #     print('✅ Employee addresses fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch employee addresses')
+
+    # response11 = asyncio.run(get_assets(GetAssetsInput(employee_id=response1[0]['id'])))
+    # if len(response11['data']) > 0:
+    #     print('✅ Assets fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch assets')
+
+    # response12 = asyncio.run(get_categories())
+    # if len(response12) > 0:
+    #     print('✅ Categories fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch categories')
+
+    # response13 = asyncio.run(get_offices(GetOfficesInput()))
+    # if len(response13) > 0:
+    #     print('✅ Offices fetched successfully')
+    # else:
+    #     print('❌ Failed to fetch offices')
+
+
     mcp.run(transport='stdio')
