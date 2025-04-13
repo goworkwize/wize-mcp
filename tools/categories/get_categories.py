@@ -1,22 +1,25 @@
 """Get categories tool."""
 
-from typing import List
-
-from pydantic import BaseModel
-
 from tools.base import BaseTool
+from tools.result import ToolResult
 
+class GetCategoriesTool(BaseTool):
+    """Tool for getting categories."""
 
-class GetCategoriesInput(BaseModel):
-    """Input for GetCategoriesTool."""
+    @staticmethod
+    def name() -> str:
+        """The name of the tool."""
+        return "get_categories"
 
-    pass
+    @staticmethod
+    def description() -> str:
+        """The description of the tool."""
+        return "Get a list of all available product categories"
 
-
-class GetCategoriesTool(BaseTool[GetCategoriesInput, List[dict]]):
-    """Tool for getting a list of all available categories."""
-
-    name: str = "get_categories"
-    description: str = "Get a list of all available categories"
-    endpoint: str = "/categories"
-    method: str = "GET"
+    async def execute(self, input_data = None) -> ToolResult:
+        """Execute the tool."""
+        response = self.client.get("/categories")
+        return ToolResult(
+            data=response,
+            error=None
+        )

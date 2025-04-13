@@ -1,5 +1,5 @@
-# """Offices tools package."""
+"""Offices tools package."""
 
-# from .get_offices import GetOfficesTool
+from tools.offices.get_offices import GetOfficesTool
 
-# __all__ = ["GetOfficesTool"]
+__all__ = ["GetOfficesTool"]

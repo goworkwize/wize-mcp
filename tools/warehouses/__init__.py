@@ -1,5 +1,5 @@
-# """Warehouses tools package."""
+"""Warehouses tools package."""
 
-# from .get_warehouses import GetWarehousesTool
+from .get_warehouses import GetWarehousesTool
 
-# __all__ = ["GetWarehousesTool"]
+__all__ = ["GetWarehousesTool"]

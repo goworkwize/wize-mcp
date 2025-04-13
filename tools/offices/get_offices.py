@@ -1,32 +1,36 @@
-"""Get offices tool."""
+"""Get categories tool."""
 
-from typing import List, Optional
+from typing import Optional
 
 from pydantic import BaseModel
 
 from tools.base import BaseTool
-from tools.offices.models import OfficeResponse
-
+from tools.result import ToolResult
 
 class GetOfficesInput(BaseModel):
     """Input for GetOfficesTool."""
 
-    include: Optional[List[str]] = None
+    page: Optional[int] = 1
+    limit: Optional[int] = 20
+    name: Optional[str] = None
 
-
-class GetOfficesTool(BaseTool[GetOfficesInput, List[OfficeResponse]]):
+class GetOfficesTool(BaseTool):
     """Tool for getting offices."""
 
-    name = "get_offices"
-    description = "Get a list of all offices"
-    input_model = GetOfficesInput
-    output_model = List[OfficeResponse]
+    @staticmethod
+    def name() -> str:
+        """The name of the tool."""
+        return "get_offices"
 
-    async def _execute(self, input_data: GetOfficesInput) -> List[OfficeResponse]:
+    @staticmethod
+    def description() -> str:
+        """The description of the tool."""
+        return "Get a list of all available offices"
+
+    async def execute(self, input_data: GetOfficesInput) -> ToolResult:
         """Execute the tool."""
-        params = {}
-        if input_data.include:
-            params["include"] = ",".join(input_data.include)
-
-        response = await self.client.get("/offices", params=params)
-        return [OfficeResponse.model_validate(office) for office in response["data"]]
+        response = self.client.get("/offices", params=input_data.model_dump())
+        return ToolResult(
+            data=response,
+            error=None
+        )
