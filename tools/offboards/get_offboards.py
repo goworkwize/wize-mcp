@@ -37,12 +37,11 @@ class GetOffboardsTool(BaseTool):
         params = {
             "per_page": input_data.per_page,
             "page": input_data.page,
-            "filters": {}
         }
         for key, value in input_params.items():
             if key in ['per_page', 'page']:
                 continue
-            params["filters"][key] = value
+            params[f"filter[{key}]"] = value
 
         response = self.client.get("/offboards", params=params)
         return ToolResult(

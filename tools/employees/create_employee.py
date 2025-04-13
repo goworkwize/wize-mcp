@@ -39,7 +39,7 @@ class CreateEmployeeTool(BaseTool):
 
     async def execute(self, input_data: CreateEmployeeInput) -> ToolResult:
         """Execute the tool."""
-        response = self.client.post("/employees", json=input_data.model_dump())
+        response = self.client.post("/employees", data=input_data.model_dump())
         return ToolResult(
             data=response,
             error=None

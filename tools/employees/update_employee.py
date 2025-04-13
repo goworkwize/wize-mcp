@@ -55,7 +55,7 @@ class UpdateEmployeeTool(BaseTool):
         employee_id = input_data.employee_id
         del input_data.employee_id
 
-        response = self.client.patch(f"/employees/{employee_id}", json=input_data.model_dump())
+        response = self.client.patch(f"/employees/{employee_id}", data=input_data.model_dump())
         return ToolResult(
             data=response,
             error=None

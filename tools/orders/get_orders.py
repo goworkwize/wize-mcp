@@ -36,12 +36,11 @@ class GetOrdersTool(BaseTool):
         params = {
             "page": input_data.page,
             "per_page": input_data.per_page,
-            "filters": {}
         }
         for key, value in input_data.model_dump().items():
             if key in ['per_page', 'page']:
                 continue
-            params["filters"][key] = value
+            params[f"filter[{key}]"] = value
 
         response = self.client.get("/orders", params=params)
         return ToolResult(

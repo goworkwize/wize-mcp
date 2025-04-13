@@ -3,6 +3,9 @@ from tools.employees.get_employee_user import GetEmployeeUserTool
 from tools.employees.create_employee import CreateEmployeeTool
 from tools.employees.get_employee_addresses import GetEmployeeAddressesTool
 from tools.employees.update_employee import UpdateEmployeeTool
+from tools.employees.update_employee_address import UpdateEmployeeAddressTool
+from tools.employees.create_employee_address import CreateEmployeeAddressTool
+from tools.employees.create_employee_asset import CreateEmployeeAssetTool
 
 __all__ = [
     "GetEmployeesTool",
@@ -10,4 +13,7 @@ __all__ = [
     "CreateEmployeeTool",
     "GetEmployeeAddressesTool",
     "UpdateEmployeeTool",
+    "UpdateEmployeeAddressTool",
+    "CreateEmployeeAddressTool",
+    "CreateEmployeeAssetTool",
 ]
