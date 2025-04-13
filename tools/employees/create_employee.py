@@ -1,6 +1,6 @@
-"""Get employees tool."""
+"""Create employee tool."""
 
-from typing import List, Optional
+from typing import Optional
 from datetime import date
 
 from pydantic import BaseModel

@@ -1,4 +1,4 @@
-"""Get employees tool."""
+"""Get order shipments tool."""
 
 from typing import List, Optional
 from datetime import date

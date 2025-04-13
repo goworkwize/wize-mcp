@@ -1,4 +1,4 @@
-"""Get employees tool."""
+"""Get employee user tool."""
 
 from typing import Union
 

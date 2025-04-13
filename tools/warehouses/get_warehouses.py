@@ -1,11 +1,8 @@
-"""Get categories tool."""
-
-from typing import Optional
-
-from pydantic import BaseModel
+"""Get warehouses tool."""
 
 from tools.base import BaseTool
 from tools.result import ToolResult
+
 class GetWarehousesTool(BaseTool):
     """Tool for getting warehouses."""
 

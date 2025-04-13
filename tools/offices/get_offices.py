@@ -1,4 +1,4 @@
-"""Get categories tool."""
+"""Get offices tool."""
 
 from typing import Optional
 
@@ -29,7 +29,17 @@ class GetOfficesTool(BaseTool):
 
     async def execute(self, input_data: GetOfficesInput) -> ToolResult:
         """Execute the tool."""
-        response = self.client.get("/offices", params=input_data.model_dump())
+        params = {
+            "per_page": input_data.per_page,
+            "page": input_data.page,
+            "filters": {}
+        }
+        for key, value in input_data.model_dump().items():
+            if key in ['per_page', 'page']:
+                continue
+            params["filters"][key] = value
+
+        response = self.client.get("/offices", params=params)
         return ToolResult(
             data=response,
             error=None

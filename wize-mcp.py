@@ -12,11 +12,12 @@ from tools.categories import GetCategoriesTool
 from tools.offices import GetOfficesTool
 from tools.offices.get_offices import GetOfficesInput
 
-from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool
+from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool, UpdateEmployeeTool
 from tools.employees.get_employees import GetEmployeesInput
 from tools.employees.create_employee import CreateEmployeeInput
 from tools.employees.get_employee_user import GetEmployeeUserInput
 from tools.employees.get_employee_addresses import GetEmployeeAddressesInput
+from tools.employees.update_employee import UpdateEmployeeInput
 
 from tools.offboards import GetOffboardsTool
 from tools.offboards.get_offboards import GetOffboardsInput
@@ -149,6 +150,14 @@ async def get_assets(input_data: GetAssetsInput):
 )
 async def get_employee_addresses(input_data: GetEmployeeAddressesInput):
     result = await GetEmployeeAddressesTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=UpdateEmployeeTool.name(),
+    description=UpdateEmployeeTool.description()
+)
+async def update_employee(input_data: UpdateEmployeeInput):
+    result = await UpdateEmployeeTool().execute(input_data)
     return result.to_response()
 
 if __name__ == "__main__":

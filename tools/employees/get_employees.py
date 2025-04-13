@@ -7,7 +7,6 @@ from pydantic import BaseModel
 from tools.base import BaseTool
 from tools.result import ToolResult
 
-
 class GetEmployeesInput(BaseModel):
     """Input for GetEmployeesTool."""
 
@@ -35,10 +34,11 @@ class GetEmployeesTool(BaseTool):
         params = {
             "page": input_data.page,
             "per_page": input_data.per_page,
+            "filters": {}
         }
 
         if input_data.email:
-            params["email"] = input_data.email
+            params["filters"]["user.email"] = input_data.email
         if input_data.include:
             params["include"] = ",".join(input_data.include)
 

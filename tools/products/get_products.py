@@ -37,16 +37,15 @@ class GetProductsTool(BaseTool):
     async def execute(self, input_data: GetProductsInput) -> ToolResult:
         """Execute the tool."""
         params = {
-            "department_id": input_data.department_id,
-            "status": input_data.status,
-            "country_ids": input_data.country_ids,
-            "search": input_data.search,
-            "category_ids": input_data.category_ids,
-            "second_hand": input_data.second_hand,
             "includes": input_data.includes,
             "page": input_data.page,
             "per_page": input_data.per_page,
+            "filters": {}
         }
+        for key, value in input_data.model_dump().items():
+            if key in ['per_page', 'page', 'includes']:
+                continue
+            params["filters"][key] = value
 
         response = self.client.get("/products", params=params)
         return ToolResult(

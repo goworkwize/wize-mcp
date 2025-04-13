@@ -1,4 +1,4 @@
-"""Get employees tool."""
+"""Get orders tool."""
 
 from typing import List, Optional
 from datetime import date
@@ -36,12 +36,12 @@ class GetOrdersTool(BaseTool):
         params = {
             "page": input_data.page,
             "per_page": input_data.per_page,
+            "filters": {}
         }
-
-        if input_data.employee_foreign_id:
-            params["employee_foreign_id"] = input_data.employee_foreign_id
-        if input_data.number:
-            params["number"] = input_data.number
+        for key, value in input_data.model_dump().items():
+            if key in ['per_page', 'page']:
+                continue
+            params["filters"][key] = value
 
         response = self.client.get("/orders", params=params)
         return ToolResult(

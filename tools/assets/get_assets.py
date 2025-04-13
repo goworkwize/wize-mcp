@@ -36,7 +36,18 @@ class GetAssetsTool(BaseTool):
 
     async def execute(self, input_data: GetAssetsInput) -> ToolResult:
         """Execute the tool."""
-        response = self.client.get("/assets", params=input_data.model_dump(exclude_none=True))
+        input_params = input_data.model_dump(exclude_none=True)
+        params = {
+            "per_page": input_data.per_page,
+            "page": input_data.page,
+            "filters": {}
+        }
+        for key, value in input_params.items():
+            if key in ['id', 'per_page', 'page']:
+                continue
+            params["filters"][key] = value
+
+        response = self.client.get("/assets", params=params)
         return ToolResult(
             data=response,
             error=None

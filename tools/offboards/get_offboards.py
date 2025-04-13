@@ -33,14 +33,16 @@ class GetOffboardsTool(BaseTool):
 
     async def execute(self, input_data: GetOffboardsInput) -> ToolResult:
         """Execute the tool."""
+        input_params = input_data.model_dump(exclude_none=True)
         params = {
-            "status": input_data.status,
-            "employee_id": input_data.employee_id,
-            "employee_foreign_id": input_data.employee_foreign_id,
-            "search": input_data.search,
-            "page": input_data.page,
             "per_page": input_data.per_page,
+            "page": input_data.page,
+            "filters": {}
         }
+        for key, value in input_params.items():
+            if key in ['per_page', 'page']:
+                continue
+            params["filters"][key] = value
 
         response = self.client.get("/offboards", params=params)
         return ToolResult(
