@@ -22,6 +22,9 @@ from tools.employees.update_employee_address import UpdateEmployeeAddressInput
 from tools.employees.create_employee_address import CreateEmployeeAddressInput
 from tools.employees.create_employee_asset import CreateEmployeeAssetInput
 
+from tools.invites import CreateInviteTool
+from tools.invites.create_invite import CreateInviteInput
+
 from tools.offboards import GetOffboardsTool
 from tools.offboards.get_offboards import GetOffboardsInput
 
@@ -185,6 +188,14 @@ async def create_employee_address(input_data: CreateEmployeeAddressInput):
 )
 async def create_employee_asset(input_data: CreateEmployeeAssetInput):
     result = await CreateEmployeeAssetTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=CreateInviteTool.name(),
+    description=CreateInviteTool.description()
+)
+async def create_invite(input_data: CreateInviteInput):
+    result = await CreateInviteTool().execute(input_data)
     return result.to_response()
 
 if __name__ == "__main__":
