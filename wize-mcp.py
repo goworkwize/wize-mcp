@@ -25,8 +25,9 @@ from tools.employees.create_employee_asset import CreateEmployeeAssetInput
 from tools.invites import CreateInviteTool
 from tools.invites.create_invite import CreateInviteInput
 
-from tools.offboards import GetOffboardsTool
+from tools.offboards import GetOffboardsTool, CreateOffboardTool
 from tools.offboards.get_offboards import GetOffboardsInput
+from tools.offboards.create_offboard import CreateOffboardInput
 
 from tools.orders import GetOrdersTool, GetOrderProductsTool, GetOrderShipmentsTool
 from tools.orders.get_orders import GetOrdersInput
@@ -196,6 +197,14 @@ async def create_employee_asset(input_data: CreateEmployeeAssetInput):
 )
 async def create_invite(input_data: CreateInviteInput):
     result = await CreateInviteTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=CreateOffboardTool.name(),
+    description=CreateOffboardTool.description()
+)
+async def create_offboard(input_data: CreateOffboardInput):
+    result = await CreateOffboardTool().execute(input_data)
     return result.to_response()
 
 if __name__ == "__main__":

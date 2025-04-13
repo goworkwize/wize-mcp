@@ -1,11 +1,18 @@
 """Get employees tool."""
 
-from typing import List, Optional, Literal
-
+from typing import List, Optional
+from enum import Enum
 from pydantic import BaseModel
 
 from tools.base import BaseTool
 from tools.result import ToolResult
+
+class PossibleIncludes(str, Enum):
+    """Possible includes for the get employees tool."""
+    USER = 'user'
+    ASSETS = 'assets'
+    DEPARTMENT = 'department'
+    ORDERS = 'orders'
 
 class GetEmployeesInput(BaseModel):
     """Input for GetEmployeesTool."""
@@ -13,7 +20,7 @@ class GetEmployeesInput(BaseModel):
     page: Optional[int] = 1
     per_page: Optional[int] = 20
     email: Optional[str] = None
-    include: Optional[List[Literal['user', 'assets', 'department', 'orders']]] = None
+    include: Optional[List[PossibleIncludes]] = None
 
 
 class GetEmployeesTool(BaseTool):

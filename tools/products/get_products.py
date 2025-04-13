@@ -1,11 +1,24 @@
 """Get products tool."""
 
-from typing import List, Optional, Literal
+from typing import List, Optional
+from enum import Enum
 
 from pydantic import BaseModel
 
 from tools.base import BaseTool
 from tools.result import ToolResult
+
+class PossibleStatuses(str, Enum):
+    """Possible statuses for the products."""
+    ADDED = 'added'
+    REMOVED = 'removed'
+
+class PossibleIncludes(str, Enum):
+    """Possible includes for the products."""
+    CATALOG = 'catalog'
+    CATEGORY = 'category'
+    SUPPLIER = 'supplier'
+    SUPPLIER_WAREHOUSE = 'supplier.warehouse'
 
 
 class GetProductsInput(BaseModel):
@@ -14,12 +27,12 @@ class GetProductsInput(BaseModel):
     per_page: Optional[int] = 25
     page: Optional[int] = 1
     department_id: Optional[int] = None
-    status: Optional[Literal['added', 'removed']] = None
+    status: Optional[PossibleStatuses] = None
     country_ids: Optional[List[int]] = None
     search: Optional[str] = None
     category_ids: Optional[List[int]] = None
     second_hand: Optional[bool] = None
-    includes: Optional[List[Literal['catalog', 'category', 'supplier', 'supplier.warehouse', 'departments', 'color', 'otherprices', 'oldVariants', 'oldVariants.color', 'oldVariants.otherprices', 'parent', 'children', 'children.otherprices', 'children.color', 'countries', 'children.catalog', 'children.catalog.employers', 'productEmployer', 'variants', 'variants.color', 'budgets', 'variants.countries']]] = ['category', 'supplier', 'countries']
+    includes: Optional[List[PossibleIncludes]] = ['category', 'supplier', 'countries']
 
 class GetProductsTool(BaseTool):
     """Tool for getting products."""

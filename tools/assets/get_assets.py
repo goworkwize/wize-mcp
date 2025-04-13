@@ -1,6 +1,6 @@
 """Get assets tool."""
 
-from typing import List, Optional, Literal
+from typing import List, Optional
 
 from pydantic import BaseModel
 
@@ -16,8 +16,8 @@ class GetAssetsInput(BaseModel):
     id: Optional[int] = None
     serial_code: Optional[str] = None
     categories: Optional[List[int]] = None
-    employee_id: Optional[int] = None
-    employee_email: Optional[str] = None
+    employeeId: Optional[int] = None
+    employeeEmail: Optional[str] = None
     external_reference: Optional[str] = None
     search: Optional[str] = None
 
