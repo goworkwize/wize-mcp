@@ -39,7 +39,15 @@ class CreateOffboardTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Creates an offboard for the provided employee with the given data. To create it properly, you need the employee ID (which you can get with the `get_employees` tool), a list of asset ids, a destination type (warehouse or office) and a destination id (which you can get with the `get_warehouses` or `get_offices` tool)."
+        return """
+Creates an offboard for the provided employee with the given data. To create it properly, you need the employee ID (which you can get with the `get_employees` tool), a list of asset ids, a destination type (warehouse or office) and a destination id (which you can get with the `get_warehouses` or `get_offices` tool).
+
+You can also provide a status, which can be:
+- scheduled: the offboard is scheduled
+- request_received: the offboard request has been received
+
+You should always confirm with the user that the information is correct before calling this tool.
+"""
 
     async def execute(self, input_data: CreateOffboardInput) -> ToolResult:
         """Execute the tool."""

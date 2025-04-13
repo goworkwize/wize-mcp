@@ -26,7 +26,13 @@ class CreateInviteTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Creates an invite with the given data"
+        return """
+Creates an invite with the given data. Make sure to ask the user for all this information:
+
+- email: the email of the invite
+
+You should always confirm with the user that the information is correct before calling this tool.
+"""
 
     async def execute(self, input_data: CreateInviteInput) -> ToolResult:
         """Execute the tool."""

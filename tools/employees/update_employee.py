@@ -48,7 +48,30 @@ class UpdateEmployeeTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Updates an employee with the given data"
+        return """
+Updates an employee with the given data. Make sure to ask the user for all this information, none of them are required:
+
+- role: the role of the employee (name of the department)
+- given_name: the first name of the employee
+- last_name: the last name of the employee
+- email: the email of the employee
+- phone_number: the phone number of the employee
+- foreign_id: the foreign id of the employee
+- employment_start_date: the start date of the employee's employment
+- employment_end_date: the end date of the employee's employment
+- personal_email: the personal email of the employee
+- personal_phone_number: the personal phone number of the employee
+- address: the address of the employee, formed by the following fields:
+  - address_line_1: the first line of the address
+  - address_line_2: the second line of the address
+  - additional_address_line: the additional address line
+  - city: the city of the address
+  - region: the region of the address
+  - postal_code: the postal code of the address
+  - country_code_iso2: the country code iso2 of the address
+
+You should always confirm with the user that the information is correct before calling this tool.
+"""
 
     async def execute(self, input_data: UpdateEmployeeInput) -> ToolResult:
         """Execute the tool."""

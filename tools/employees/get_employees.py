@@ -34,7 +34,13 @@ class GetEmployeesTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of employees with filtering options"
+        return """
+Get a list of employees with filtering options.
+
+You can filter by:
+- email: the email of the employee
+- include: the includes to include in the response (user, assets, department, orders)
+"""
 
     async def execute(self, input_data: GetEmployeesInput) -> ToolResult:
         """Execute the tool."""

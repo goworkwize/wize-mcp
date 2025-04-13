@@ -58,7 +58,26 @@ class CreateEmployeeAssetTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Creates an employee asset with the given data"
+        return """
+Creates an asset owned by the provided employee with the given data. Make sure to ask the user for all this information:
+
+- name: the name of the asset
+- type: the type of the asset (Buy or Rent)
+- category_id: the id of the category of the asset
+- depreciation_months: the number of months the asset will be depreciated
+- budget_deduction: the amount of the budget deduction for the asset
+- invoice_price: the price of the asset
+- date_ordered: the date the asset was ordered
+- currency: the currency of the asset
+- rent_end_date: the date the asset will be returned
+- note: a note for the asset
+- tags: a list of tags for the asset
+- serial_code: the serial code of the asset
+- image: the image of the asset
+- warehouse_status: the status of the asset in the warehouse (available, unavailable, unknown, in repair)
+
+You should always confirm with the user that the information is correct before calling this tool.
+"""
 
     async def execute(self, input_data: CreateEmployeeAssetInput) -> ToolResult:
         """Execute the tool."""

@@ -32,8 +32,18 @@ class GetAssetsTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of assets with filtering options"
+        return """
+Get a list of assets with filtering options.
 
+You can filter by:
+- id: the id of the asset
+- serial_code: the serial code of the asset
+- categories: a list of category ids
+- employeeId: the id of the employee who owns the asset
+- employeeEmail: the email of the employee who owns the asset
+- external_reference: the external reference of the asset
+- search: a search query to search for a specific asset (for example, the name)
+"""
     async def execute(self, input_data: GetAssetsInput) -> ToolResult:
         """Execute the tool."""
         input_params = input_data.model_dump(exclude_none=True)

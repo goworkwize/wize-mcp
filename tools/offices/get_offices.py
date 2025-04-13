@@ -25,7 +25,12 @@ class GetOfficesTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of all available offices"
+        return """
+Get a list of all available offices.
+
+You can filter by:
+- name: the name of the office
+"""
 
     async def execute(self, input_data: GetOfficesInput) -> ToolResult:
         """Execute the tool."""

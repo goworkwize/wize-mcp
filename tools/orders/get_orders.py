@@ -29,7 +29,13 @@ class GetOrdersTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of orders with filtering options"
+        return """
+Get a list of orders with filtering options.
+
+You can filter by:
+- employee_foreign_id: the foreign id of the employee (from an HRIS system)
+- number: the number of the order. You can use this parameter to search for a specific order
+"""
 
     async def execute(self, input_data: GetOrdersInput) -> ToolResult:
         """Execute the tool."""

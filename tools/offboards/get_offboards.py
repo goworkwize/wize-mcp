@@ -54,8 +54,15 @@ class GetOffboardsTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of offboards with filtering options"
+        return """
+Get a list of offboards with filtering options.
 
+You can filter by:
+- status: the status of the offboard
+- employee_id: the id of the employee
+- employee_foreign_id: the foreign id of the employee
+- search: a search query to search for a specific offboard (for example, the name or email of the employee)
+"""
     async def execute(self, input_data: GetOffboardsInput) -> ToolResult:
         """Execute the tool."""
         input_params = input_data.model_dump(exclude_none=True)

@@ -1,7 +1,6 @@
 """Get order products tool."""
 
-from typing import List, Optional
-from datetime import date
+from typing import Union
 
 from pydantic import BaseModel
 
@@ -11,7 +10,7 @@ from tools.result import ToolResult
 
 class GetOrderProductsInput(BaseModel):
     """Input for GetOrderProductsTool."""
-    order_number: Optional[str] = None
+    order_number: Union[str, int]
 
 
 class GetOrderProductsTool(BaseTool):
@@ -25,7 +24,12 @@ class GetOrderProductsTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of products for a specific order"
+        return """
+Get a list of products (order items) for a specific order.
+
+You have to provide:
+- order_number: the number of the order. You can use this parameter to search for a specific order
+"""
 
     async def execute(self, input_data: GetOrderProductsInput) -> ToolResult:
         """Execute the tool."""

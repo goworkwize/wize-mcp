@@ -37,6 +37,9 @@ from tools.orders.get_order_shipments import GetOrderShipmentsInput
 from tools.products import GetProductsTool
 from tools.products.get_products import GetProductsInput
 
+from tools.users import CreateUserTool
+from tools.users.create_user import CreateUserInput
+
 from tools.warehouses import GetWarehousesTool
 
 import dotenv
@@ -205,6 +208,14 @@ async def create_invite(input_data: CreateInviteInput):
 )
 async def create_offboard(input_data: CreateOffboardInput):
     result = await CreateOffboardTool().execute(input_data)
+    return result.to_response()
+
+@mcp.tool(
+    name=CreateUserTool.name(),
+    description=CreateUserTool.description()
+)
+async def create_user(input_data: CreateUserInput):
+    result = await CreateUserTool().execute(input_data)
     return result.to_response()
 
 if __name__ == "__main__":

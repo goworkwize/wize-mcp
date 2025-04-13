@@ -37,8 +37,24 @@ class UpdateEmployeeAddressTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Updates an employee address with the given data"
+        return """
+Updates an employee address with the given data. Make sure to ask the user for all this information, none of them are required:
 
+- company_name: the name of the company
+- address_line_1: the first line of the address
+- address_line_2: the second line of the address
+- additional_address_line: the additional address line
+- city: the city of the address
+- region: the region of the address
+- postal_code: the postal code of the address
+- country_id: the id of the country
+- phone_number: the phone number of the owner of the address
+- email: the email of the owner of the address
+
+You will need to provide the employee id and the address id to call this tool. Make sure to ask for it if the user doesn't provide it.
+
+You should always confirm with the user that the information is correct before calling this tool.
+"""
     async def execute(self, input_data: UpdateEmployeeAddressInput) -> ToolResult:
         """Execute the tool."""
         employee_id = input_data.employee_id

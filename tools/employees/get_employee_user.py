@@ -25,7 +25,7 @@ class GetEmployeeUserTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get the user associated with the employee"
+        return "Get the user associated with a certain employee. You need an employee id to call this tool. You can get it by calling the get_employees tool and filtering by email, so make sure to ask for it if the user doesn't provide it."
 
     async def execute(self, input_data: GetEmployeeUserInput) -> ToolResult:
         """Execute the tool."""

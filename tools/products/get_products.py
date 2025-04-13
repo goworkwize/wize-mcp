@@ -45,7 +45,17 @@ class GetProductsTool(BaseTool):
     @staticmethod
     def description() -> str:
         """The description of the tool."""
-        return "Get a list of products with filtering options"
+        return """
+Get a list of products available for the current company with filtering options.
+
+You can filter by:
+- department_id: the id of the department
+- status: the status of the product
+- country_ids: the ids of the countries
+- search: a search query to search for a specific product (for example, the name)
+- category_ids: the ids of the categories
+- second_hand: whether the product is second hand
+"""
 
     async def execute(self, input_data: GetProductsInput) -> ToolResult:
         """Execute the tool."""
