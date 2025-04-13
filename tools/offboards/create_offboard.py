@@ -1,6 +1,6 @@
 """Create offboard tool."""
 
-from typing import Optional, List
+from typing import Optional, List, Union
 from enum import Enum
 
 from pydantic import BaseModel
@@ -24,7 +24,7 @@ class CreateOffboardInput(BaseModel):
     employee_id: int
     assets: List[int]
     destination_type: PossibleDestinationTypes
-    destination_id: int
+    destination_code: Union[int, str]
     status: Optional[PossibleStatuses]
 
 
