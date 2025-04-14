@@ -6,7 +6,6 @@ An MCP server implementation for the Workwize Public API.
 
 - Access to Workwize Public API through MCP tools
 - Secure API token handling
-- Error handling and logging
 - Easy to extend with new tools
 
 ## Setup
@@ -25,84 +24,59 @@ WORKWIZE_API_TOKEN=your_token_here
 
 Start the server:
 ```bash
-workwize-mcp
+python wize-mcp
 ```
 
-The server provides the following tools:
+## Local Installation with Claude for Desktop
 
-### Orders
+To use this MCP server locally with Claude for Desktop:
 
-#### get_orders
-Get orders from Workwize with optional filters:
-- `employee_foreign_id`: Filter orders by employee's foreign ID
-- `order_number`: Filter orders by order number
-- `per_page`: Number of orders per page
+1. Make sure you have Claude for Desktop installed and updated to the latest version.
 
-#### get_order
-Get a specific order by its ID:
-- `order_id`: The ID of the order to retrieve
+2. Configure Claude for Desktop by editing the configuration file:
 
-#### get_order_shipments
-Get shipments for a specific order:
-- `order_id`: The ID of the order to get shipments for
+   **On MacOS**:
+   ```bash
+   code ~/Library/Application\ Support/Claude/claude_desktop_config.json
+   ```
 
-### Assets
+   **On Windows**:
+   ```powershell
+   code $env:AppData\Claude\claude_desktop_config.json
+   ```
 
-#### get_assets
-Get assets with optional filters:
-- `employee_id`: Filter assets by employee ID
-- `employee_email`: Filter assets by employee email
-- `country_availability`: Filter assets by country ISO2 codes (comma-separated)
-- `per_page`: Number of assets per page (default: 200)
-- `page`: Page number for pagination
+   Create the file if it doesn't exist.
 
-#### get_warehouses
-Get warehouses with optional country information:
-- `include_countries`: Whether to include country information for each warehouse
+3. Add the Wize MCP server to your configuration:
 
-### Employees
+   ```json
+   {
+       "mcpServers": {
+           "workwize": {
+               "command": "uv",
+               "args": [
+                   "--directory",
+                   "/path/to/wize-mcp",
+                   "run",
+                   "wize-mcp"
+               ],
+               "env": {
+                   "WORKWIZE_API_TOKEN": "your_token_here"
+               }
+           }
+       }
+   }
+   ```
 
-#### create_employee_asset
-Create an asset for a specific employee:
-- `employee_id`: The ID of the employee
-- `name`: The name of the asset
-- `type`: Whether the asset is purchased or rented ("Buy" or "Rent")
-- `category_id`: The ID of the asset category
-- `budget_deduction`: The amount deducted from the budget
-- `date_ordered`: The date when the asset was ordered (YYYY-MM-DD)
-- `currency`: The currency code (e.g., EUR, USD)
-- `depreciation_months`: Required if type is Buy. Number of months for depreciation
-- `invoice_price`: The price listed on the invoice
-- `rent_end_date`: Required if type is Rent. The rental period end date (YYYY-MM-DD)
-- `note`: Additional comments or notes
-- `tags`: List of tag IDs
-- `serial_code`: The serial number
-- `image`: Array of image URLs
-- `warehouse_status`: Current inventory status ("Available", "Reserved", "Sold")
+4. Restart Claude for Desktop to load the configuration.
 
-### Offices
-
-#### get_offices
-Get all offices (no parameters required)
-
-## Development
-
-1. Create a virtual environment:
-```bash
-python -m venv .venv
-source .venv/bin/activate  # On Windows: .venv\Scripts\activate
-```
-
-2. Install development dependencies:
-```bash
-pip install -e ".[dev]"
-```
+5. Verify the MCP server is working by looking for the hammer icon in the Claude interface.
 
 ## Adding New Tools
 
-1. Create a new tool class in `src/workwize_mcp/tools/`
-2. Add the tool to the `_get_tools()` method in `src/workwize_mcp/server.py`
-3. Update the API client in `src/workwize_mcp/api/client.py` if needed
+1. Create a new tool class in `src/wize-mcp/tools/`
+2. Add the tool to the `_get_tools()` method in `src/wize-mcp/wize-mcp.py`
+3. Update the API client in `src/wize-mcp/api/client.py` if needed
 
 ## License
 
