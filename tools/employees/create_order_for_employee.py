@@ -71,7 +71,12 @@ You should always confirm with the user that the information is correct before c
 
     async def execute(self, input_data: CreateOrderForEmployeeInput) -> ToolResult:
         """Execute the tool."""
-        response = self.client.post(f"/employees/{input_data.employee_id}/orders", data=input_data.model_dump())
+        data = input_data.model_dump()
+        if 'assets' not in data or data['assets'] is None:
+            data['assets'] = []
+        if 'products' not in data or data['products'] is None:
+            data['products'] = []
+        response = self.client.post(f"/employees/{input_data.employee_id}/orders", data=data)
         return ToolResult(
             data=response,
             error=None
