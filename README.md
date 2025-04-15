@@ -21,7 +21,7 @@ You will also need an MCP client. You can, for example, use [Claude Desktop](htt
 
 First of all, you will need to create a Workwize API token. You can do so by going to [your account page](https://app.goworkwize.com/app/account/settings) and generating an API token at the bottom of the page.
 
-![Workwize API token](https://raw.githubusercontent.com/goworkwize/wize-mcp/main/assets/api-token.png)
+![Workwize API token](https://raw.githubusercontent.com/goworkwize/wize-mcp/master/assets/api-token.png)
 
 Then, once you have `uv` installed and your token generated, you can open Claude Desktop or your preferred MCP client and add the following server:
 
@@ -43,7 +43,7 @@ Then, once you have `uv` installed and your token generated, you can open Claude
 
 To add a server in Claude Desktop, you can open the Settings menu and click on the "Developer" tab. Then, click on "Get started" and paste the above JSON.
 
-![Developer tab on Claude Desktop](https://raw.githubusercontent.com/goworkwize/wize-mcp/main/assets/developer.png)
+![Developer tab on Claude Desktop](https://raw.githubusercontent.com/goworkwize/wize-mcp/master/assets/developer.png)
 
 Make sure to replace `your-token-here` with your actual Workwize API token.
 
@@ -51,7 +51,7 @@ Then, restart Claude Desktop or your preferred MCP client to load the configurat
 
 Finally, verify the MCP server is working by looking for the hammer icon in the Claude interface.
 
-![Tools on Claude Desktop](https://raw.githubusercontent.com/goworkwize/wize-mcp/main/assets/tools.png)
+![Tools on Claude Desktop](https://raw.githubusercontent.com/goworkwize/wize-mcp/master/assets/tools.png)
 
 ## Troubleshooting
 
