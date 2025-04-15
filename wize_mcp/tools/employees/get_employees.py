@@ -40,6 +40,8 @@ Get a list of employees with filtering options.
 You can filter by:
 - email: the email of the employee
 - include: the includes to include in the response (user, assets, department, orders)
+
+Do not use the includes if you don't need them.
 """
 
     async def execute(self, input_data: GetEmployeesInput) -> ToolResult:

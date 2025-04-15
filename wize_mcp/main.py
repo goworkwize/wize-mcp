@@ -1,14 +1,10 @@
 from typing import Any
-import httpx
 from mcp.server.fastmcp import FastMCP
 
 from tools.self import GetSelfTool
-
 from tools.assets import GetAssetsTool
 from tools.assets.get_assets import GetAssetsInput
-
 from tools.categories import GetCategoriesTool
-
 from tools.employees import GetEmployeesTool, CreateEmployeeTool, GetEmployeeUserTool, GetEmployeeAddressesTool, UpdateEmployeeTool, UpdateEmployeeAddressTool, CreateEmployeeAddressTool, CreateEmployeeAssetTool, CreateOrderForEmployeeTool
 from tools.employees.get_employees import GetEmployeesInput
 from tools.employees.create_employee import CreateEmployeeInput
@@ -19,32 +15,24 @@ from tools.employees.update_employee_address import UpdateEmployeeAddressInput
 from tools.employees.create_employee_address import CreateEmployeeAddressInput
 from tools.employees.create_employee_asset import CreateEmployeeAssetInput
 from tools.employees.create_order_for_employee import CreateOrderForEmployeeInput
-
 from tools.invites import CreateInviteTool
 from tools.invites.create_invite import CreateInviteInput
-
 from tools.offboards import GetOffboardsTool, CreateOffboardTool
 from tools.offboards.get_offboards import GetOffboardsInput
 from tools.offboards.create_offboard import CreateOffboardInput
-
 from tools.offices import GetOfficesTool, CreateOrderForOfficeTool
 from tools.offices.get_offices import GetOfficesInput
 from tools.offices.create_order_for_office import CreateOrderForOfficeInput
-
 from tools.orders import GetOrdersTool, GetOrderProductsTool, GetOrderShipmentsTool
 from tools.orders.get_orders import GetOrdersInput
 from tools.orders.get_order_products import GetOrderProductsInput
 from tools.orders.get_order_shipments import GetOrderShipmentsInput
-
 from tools.products import GetProductsTool
 from tools.products.get_products import GetProductsInput
-
 from tools.users import CreateUserTool
 from tools.users.create_user import CreateUserInput
-
 from tools.warehouses import GetWarehousesTool, CreateOrderForWarehouseTool
 from tools.warehouses.create_order_for_warehouse import CreateOrderForWarehouseInput
-
 import dotenv
 import asyncio
 
@@ -245,5 +233,8 @@ async def create_order_for_warehouse(input_data: CreateOrderForWarehouseInput):
     result = await CreateOrderForWarehouseTool().execute(input_data)
     return result.to_response()
 
-if __name__ == "__main__":
+def main():
     mcp.run(transport='stdio')
+
+if __name__ == "__main__":
+    main()
