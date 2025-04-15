@@ -1,5 +1,5 @@
 """Products tools package."""
 
-from tools.products.get_products import GetProductsTool
+from wize_mcp.tools.products.get_products import GetProductsTool
 
 __all__ = ["GetProductsTool"]

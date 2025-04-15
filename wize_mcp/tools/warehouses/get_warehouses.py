@@ -1,7 +1,7 @@
 """Get warehouses tool."""
 
-from tools.base import BaseTool
-from tools.result import ToolResult
+from wize_mcp.tools.base import BaseTool
+from wize_mcp.tools.result import ToolResult
 
 class GetWarehousesTool(BaseTool):
     """Tool for getting warehouses."""

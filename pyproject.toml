@@ -1,6 +1,6 @@
 [project]
 name = "wize_mcp"
-version = "0.1.0"
+version = "0.1.1"
 description = "MCP integration for Workwize"
 authors = [{ name="Raúl López", email="hi@raullg.com" }]
 readme = "README.md"
@@ -13,7 +13,7 @@ dependencies = [
 ]
 
 [project.scripts]
-workwize-mcp = "wize_mcp.main:main"
+wize_mcp = "wize_mcp.main:main"
 
 [build-system]
 requires = ["hatchling"]

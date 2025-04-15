@@ -300,8 +300,8 @@ wheels = [
 ]
 
 [[package]]
-name = "workwize-mcp"
-version = "0.1.0"
+name = "wize-mcp"
+version = "0.1.1"
 source = { editable = "." }
 dependencies = [
     { name = "httpx" },

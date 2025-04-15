@@ -1,5 +1,5 @@
 """Users tools package."""
 
-from tools.users.create_user import CreateUserTool
+from wize_mcp.tools.users.create_user import CreateUserTool
 
 __all__ = ["CreateUserTool"]
