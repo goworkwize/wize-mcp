@@ -1,7 +1,7 @@
 """Base tools for the Workwize MCP server."""
 from abc import ABC, abstractmethod
 from .result import ToolResult
-from api.client import WorkwizeClient
+from wize_mcp.api.client import WorkwizeClient
 
 class BaseTool(ABC):
     """Base tool for the Workwize MCP server."""

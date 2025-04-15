@@ -1,57 +1,13 @@
 """Workwize API client module."""
 from typing import Any, Dict, Optional
-from datetime import date
 
 import httpx
-from pydantic import BaseModel
 
-from config import config
+from wize_mcp.config import config
 
 class WorkwizeAPIError(Exception):
     """Custom exception for Workwize API errors."""
     pass
-
-class OrderFilter(BaseModel):
-    """Model for order filter parameters."""
-    employee_foreign_id: Optional[str] = None
-    number: Optional[str] = None
-    per_page: Optional[int] = None
-
-class AssetFilter(BaseModel):
-    """Model for asset filter parameters."""
-    employee_id: Optional[str] = None
-    employee_email: Optional[str] = None
-    country_availability: Optional[str] = None
-    per_page: Optional[int] = 200
-    page: Optional[int] = None
-
-class CreateAssetData(BaseModel):
-    """Model for creating an asset."""
-    name: str
-    type: str  # "Buy" or "Rent"
-    category_id: int
-    budget_deduction: float
-    date_ordered: date
-    currency: str
-    depreciation_months: Optional[int] = None
-    invoice_price: Optional[float] = None
-    rent_end_date: Optional[date] = None
-    note: Optional[str] = None
-    tags: Optional[list[int]] = None
-    serial_code: Optional[str] = None
-    image: Optional[list[str]] = None
-    warehouse_status: Optional[str] = None
-
-class CreateAddressData(BaseModel):
-    """Model for creating an address."""
-    city: str
-    postal_code: str
-    country_id: int
-    address_line_1: Optional[str] = None
-    address_line_2: Optional[str] = None
-    additional_address_line: Optional[str] = None
-    region: Optional[str] = None
-    phone_number: Optional[str] = None
 
 class WorkwizeClient:
     """Client for interacting with the Workwize Public API."""

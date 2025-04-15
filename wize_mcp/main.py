@@ -34,7 +34,6 @@ from wize_mcp.tools.users.create_user import CreateUserInput
 from wize_mcp.tools.warehouses import GetWarehousesTool, CreateOrderForWarehouseTool
 from wize_mcp.tools.warehouses.create_order_for_warehouse import CreateOrderForWarehouseInput
 import dotenv
-import asyncio
 
 dotenv.load_dotenv()
 
