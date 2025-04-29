@@ -25,6 +25,7 @@ class WorkwizeClient:
             headers={
                 "Authorization": f"Bearer {self.api_token}",
                 "Accept": "application/json",
+                "X-Client-Id": "Workwize-MCP-Client",
             },
             timeout=30.0
         )
